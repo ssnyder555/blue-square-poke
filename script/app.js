@@ -1,10 +1,32 @@
-let score = 0 
+let score = 0 ;
+let time = 10;
+let round = 1;
 
 $('button').on('click', () => {
   console.log('click works');
   // when the user clicks the button, populate the square
   createSquares(30);
+  setTimer();
 });
+
+// now try to write a function called setTimer
+// thats starts an interval and countsdown to 0
+// and when it reaches 0 increase the round
+
+const setTimer = () => {
+  const interval = setInterval(() => {
+    time--;
+
+    if(time === 0){
+      clearInterval(interval);
+      round++
+
+      $('#round').text('round: ' + round);
+    }
+    $('#timer').text('timer: ' + time + 's');
+
+  }, 1000)
+}
 
 
 // create a function named createSquares, that takes in
@@ -43,9 +65,10 @@ const checkValidPoke = (colorAsString) => {
 
   if(colorAsString === 'rgb(0, 0, 255)'){
     score++
-  }else {
+  } else {
     score--
   }
+  // actuall updating on the DOM
   $('h1').text('Scoreboard: ' + score);
 }
 
