@@ -1,4 +1,4 @@
-console.log('working');
+let score = 0 
 
 $('button').on('click', () => {
   console.log('click works');
@@ -26,8 +26,29 @@ const createSquares = (numberOfSquares) => {
 const disappearSquare = (e) => {
   // e is short for event
   // e.current tagreg gives you the div you are clickig on
+
+  // to retrieve a property
+  const color = $(e.currentTarget).css('background-color');
+
+  checkValidPoke(color);
+
+
+  // setting a proprty using jQuery
   $(e.currentTarget).css('opacity', 0);
 }
+// lets write a function called checkValidPoke
+// that takes the color string
+// and if it is blue lets update a global scroe variable
+const checkValidPoke = (colorAsString) => {
+
+  if(colorAsString === 'rgb(0, 0, 255)'){
+    score++
+  }else {
+    score--
+  }
+  $('h1').text('Scoreboard: ' + score);
+}
+
 
 // now we have a bunch of blue squares,
 // but wee want our squares to have a random,
